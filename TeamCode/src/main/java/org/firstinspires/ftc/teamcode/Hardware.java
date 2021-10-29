@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -50,12 +49,12 @@ public class Hardware {
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
         frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
         backRightMotor.setDirection(DcMotor.Direction.FORWARD);
-        backLeftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        backLeftMotor.setDirection(DcMotor.Direction.FORWARD);
 
         carouselSpinner.setDirection(DcMotor.Direction.FORWARD);
 
-        intakeSpinner.setDirection(DcMotorSimple.Direction.FORWARD);
-        intakeLifter.setDirection(DcMotorSimple.Direction.FORWARD);
+        intakeSpinner.setDirection(DcMotor.Direction.FORWARD);
+        intakeLifter.setDirection(DcMotor.Direction.FORWARD);
 
 
         //Set zero power behavior
