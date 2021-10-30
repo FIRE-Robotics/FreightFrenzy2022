@@ -34,6 +34,11 @@ public class JoystickTeleOp extends LinearOpMode {
         double finalDrivingX;
         double finalDrivingY;
 
+        //positions for intake lifter
+        int intakePos = robot.intakeLifter.getCurrentPosition();
+        int outtakePos = 0;
+        //TODO: tune intakePos and outtakePos to get the correct positions of the motor for there respected actions.
+
 
 
         // Wait for the game to start (driver presses PLAY)
@@ -71,10 +76,46 @@ public class JoystickTeleOp extends LinearOpMode {
 
 
 
+            //Code for everything that isn't drivetrain
+
+            //carousel spinner, hold down right bumper to keep it spinning
+            if (gamepad1.x){
+                //TODO: tune power so that duck doesnt go ouiiiiiiii
+                robot.carouselSpinner.setPower(0.5);
+            }
+            else{
+                robot.carouselSpinner.setPower(0);
+            }
+
+
+            //intake: picking up stuff binded to left bumper, and right bumper is binded to outtaking
+            if (gamepad1.left_bumper){
+                robot.intakeSpinner.setPower(0.8);
+            }
+            else if (gamepad1.right_bumper){
+                robot.intakeSpinner.setPower(-0.3);
+            }
+            else {
+                robot.intakeSpinner.setPower(0);
+            }
+
+
+            //intake lifter
+            if (gamepad1.dpad_up){
+                robot.intakeLifter.setTargetPosition(outtakePos);
+            }
+
+            if (gamepad1.dpad_down){
+                robot.intakeLifter.setTargetPosition(intakePos);
+            }
+
             // Send telemetry message to signify robot
             telemetry.addData("Driving", drivingX);    //sends data on forward power
             telemetry.addData("Strafing", drivingY);   //sends data for strafing powers
             telemetry.addData("Turning", turning);    //sends data for turning powers
+            telemetry.addData("intakeLifter Position", robot.intakeLifter.getCurrentPosition()); //Sends the position of the intakeLifter position (usefule for tuning)
+            telemetry.addData("intakeSpinner Power", robot.intakeSpinner.getPower()); //Sends the power of the intakeSpinner to the phone
+            telemetry.addData("carouselSpinner Power", robot.carouselSpinner.getPower()); //sends the power of the carousel spinner to the phone
             telemetry.update();
 
 
