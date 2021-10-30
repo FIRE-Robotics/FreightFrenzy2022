@@ -110,12 +110,12 @@ public class JoystickTeleOp extends LinearOpMode {
             }
 
             // Send telemetry message to signify robot
-            telemetry.addData("Driving", drivingX);    //sends data on forward power
-            telemetry.addData("Strafing", drivingY);   //sends data for strafing powers
-            telemetry.addData("Turning", turning);    //sends data for turning powers
-            telemetry.addData("intakeLifter Position", robot.intakeLifter.getCurrentPosition()); //Sends the position of the intakeLifter position (usefule for tuning)
-            telemetry.addData("intakeSpinner Power", robot.intakeSpinner.getPower()); //Sends the power of the intakeSpinner to the phone
-            telemetry.addData("carouselSpinner Power", robot.carouselSpinner.getPower()); //sends the power of the carousel spinner to the phone
+            telemetry.addData("Driving: ", drivingX);    //sends data on forward power
+            telemetry.addData("Strafing: ", drivingY);   //sends data for strafing powers
+            telemetry.addData("Turning: ", turning);    //sends data for turning powers
+            telemetry.addData("intakeLifter Position: ", robot.intakeLifter.getCurrentPosition()); //Sends the position of the intakeLifter position (usefule for tuning)
+            telemetry.addData("intakeSpinner Power: ", robot.intakeSpinner.getPower()); //Sends the power of the intakeSpinner to the phone
+            telemetry.addData("carouselSpinner Power: ", robot.carouselSpinner.getPower()); //sends the power of the carousel spinner to the phone
             telemetry.update();
 
 
