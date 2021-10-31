@@ -13,11 +13,14 @@ import org.firstinspires.ftc.teamcode.Hardware;
 public class JoystickTeleOp extends LinearOpMode {
 
     /* Declare OpMode members. */
-    Hardware robot = new Hardware(hardwareMap);   // sets established hardware
+    Hardware robot = new Hardware();   // sets established hardware
 
 
     @Override
     public void runOpMode() {
+
+        robot.initialize(hardwareMap);
+
         //Sets variables for driving/strafing
         double drivingX;
         double drivingY;

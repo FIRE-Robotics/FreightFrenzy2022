@@ -8,8 +8,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class Hardware {
 
     //Possible reference = HardwarePushbot.java
-
-
     //Motors for drivetrain
     public DcMotor frontRightMotor = null;
     public DcMotor frontLeftMotor = null;
@@ -23,27 +21,28 @@ public class Hardware {
     public DcMotor intakeSpinner = null;
     public DcMotor intakeLifter = null;
 
-    HardwareMap hardwareMap = null;
+    HardwareMap hwMap = null;
     public ElapsedTime runtime = new ElapsedTime();
 
-    public Hardware (HardwareMap hwMap){
-        initialize(hwMap);
+    //public Hardware (HardwareMap hwMap)
+    public Hardware (){
+        //initialize(hwMap);
     }
 
-    private void initialize(HardwareMap hwMap){
-        hardwareMap = hwMap;
+    public void initialize(HardwareMap ahwMap){
+        hwMap = ahwMap;
 
 
         //connect motors
-        frontRightMotor = hardwareMap.get(DcMotor.class,"frontRightMotor");
-        frontLeftMotor = hardwareMap.get(DcMotor.class,"frontLeftMotor");
-        backRightMotor= hardwareMap.get(DcMotor.class,"backRightMotor");
-        backLeftMotor = hardwareMap.get(DcMotor.class,"backLeftMotor");
+        frontRightMotor = hwMap.get(DcMotor.class,"frontRightMotor");
+        frontLeftMotor = hwMap.get(DcMotor.class,"frontLeftMotor");
+        backRightMotor= hwMap.get(DcMotor.class,"backRightMotor");
+        backLeftMotor = hwMap.get(DcMotor.class,"backLeftMotor");
 
-        carouselSpinner = hardwareMap.get(DcMotor.class, "carouselSpinner");
+        //carouselSpinner = hwMap.get(DcMotor.class, "carouselSpinner");
 
-        intakeSpinner = hardwareMap.get(DcMotor.class, "intakeSpinner");
-        intakeLifter = hardwareMap.get(DcMotor.class, "intakeLifter");
+        //intakeSpinner = hwMap.get(DcMotor.class, "intakeSpinner");
+        //intakeLifter = hwMap.get(DcMotor.class, "intakeLifter");
 
 
         //set directions
@@ -52,10 +51,10 @@ public class Hardware {
         backRightMotor.setDirection(DcMotor.Direction.FORWARD);
         backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
 
-        carouselSpinner.setDirection(DcMotor.Direction.FORWARD);
-
-        intakeSpinner.setDirection(DcMotor.Direction.FORWARD);
-        intakeLifter.setDirection(DcMotor.Direction.FORWARD);
+//        carouselSpinner.setDirection(DcMotor.Direction.FORWARD);
+//
+//        intakeSpinner.setDirection(DcMotor.Direction.FORWARD);
+//        intakeLifter.setDirection(DcMotor.Direction.FORWARD);
 
 
         //Set zero power behavior
@@ -64,10 +63,10 @@ public class Hardware {
         backRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        carouselSpinner.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        intakeSpinner.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        intakeLifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        carouselSpinner.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//
+//        intakeSpinner.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        intakeLifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
         //set power to zero
@@ -76,10 +75,10 @@ public class Hardware {
         backRightMotor.setPower(0);
         backLeftMotor.setPower(0);
 
-        carouselSpinner.setPower(0);
-
-        intakeSpinner.setPower(0);
-        intakeLifter.setPower(0);
+//        carouselSpinner.setPower(0);
+//
+//        intakeSpinner.setPower(0);
+//        intakeLifter.setPower(0);
 
 
         //set Motor Mode
@@ -88,9 +87,9 @@ public class Hardware {
         backRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        carouselSpinner.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        intakeSpinner.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        intakeLifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        carouselSpinner.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//
+//        intakeSpinner.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        intakeLifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 }

@@ -13,11 +13,15 @@ import org.firstinspires.ftc.teamcode.Hardware;
 public class JoystickTeleOp2 extends LinearOpMode {
 
     /* Declare OpMode members. */
-    Hardware robot = new Hardware(hardwareMap);   // sets established hardware
+
+    Hardware robot = new Hardware();   // sets established hardware
 
 
     @Override
     public void runOpMode() {
+
+
+
         //Sets variables for driving/strafing
         double drivingX;
         double drivingY;
@@ -30,11 +34,11 @@ public class JoystickTeleOp2 extends LinearOpMode {
         double backLeftPower;
         double backRightPower;
 
-        int intakePos = robot.intakeLifter.getCurrentPosition();
+        //int intakePos = robot.intakeLifter.getCurrentPosition();
         int outtakePos = 0;
         //TODO: tune intakePos and outtakePos to get the correct positions of the motor for there respected actions.
 
-
+        robot.initialize(hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -74,10 +78,10 @@ public class JoystickTeleOp2 extends LinearOpMode {
             turning = gamepad1.right_stick_x;
 
             //calculate Powers
-            frontLeftPower = drivingX + drivingY + turning;
-            backLeftPower = drivingX - drivingY + turning;
-            frontRightPower = drivingY - drivingX - turning;
-            backRightPower = drivingY + drivingX - turning;
+            frontLeftPower = (drivingX + drivingY + turning)*0.8;
+            backLeftPower = (drivingY - drivingX + turning)*0.8;
+            frontRightPower = (drivingY - drivingX - turning)*0.8;
+            backRightPower = (drivingY + drivingX - turning)*0.8;
 
 
 
@@ -105,41 +109,46 @@ public class JoystickTeleOp2 extends LinearOpMode {
             //carousel spinner, hold down right bumper to keep it spinning
             if (gamepad1.x){
                 //TODO: tune power so that duck doesnt go ouiiiiiiii
-                robot.carouselSpinner.setPower(0.5);
+                //robot.carouselSpinner.setPower(0.5);
             }
             else{
-                robot.carouselSpinner.setPower(0);
+                //robot.carouselSpinner.setPower(0);
             }
 
 
             //intake: picking up stuff binded to left bumper, and right bumper is binded to outtaking
             if (gamepad1.left_bumper){
-                robot.intakeSpinner.setPower(0.8);
+                //robot.intakeSpinner.setPower(0.8);
             }
             else if (gamepad1.right_bumper){
-                robot.intakeSpinner.setPower(-0.3);
+                //robot.intakeSpinner.setPower(-0.3);
             }
             else {
-                robot.intakeSpinner.setPower(0);
+                //robot.intakeSpinner.setPower(0);
             }
 
 
             //intake lifter
             if (gamepad1.dpad_up){
-                robot.intakeLifter.setTargetPosition(outtakePos);
+                //robot.intakeLifter.setTargetPosition(outtakePos);
             }
 
             if (gamepad1.dpad_down){
-                robot.intakeLifter.setTargetPosition(intakePos);
+                //robot.intakeLifter.setTargetPosition(intakePos);
             }
 
             // Send telemetry message to signify robot
             telemetry.addData("Driving: ", drivingX);    //sends data on forward power
             telemetry.addData("Strafing: ", drivingY);   //sends data for strafing powers
             telemetry.addData("Turning: ", turning);    //sends data for turning powers
-            telemetry.addData("intakeLifter Position: ", robot.intakeLifter.getCurrentPosition()); //Sends the position of the intakeLifter position (usefule for tuning)
-            telemetry.addData("intakeSpinner Power: ", robot.intakeSpinner.getPower()); //Sends the power of the intakeSpinner to the phone
-            telemetry.addData("carouselSpinner Power: ", robot.carouselSpinner.getPower()); //sends the power of the carousel spinner to the phone
+            telemetry.addData("frontRightMotor:", robot.frontRightMotor.getPower());
+            telemetry.addData("frontLeftMotor", robot.frontLeftMotor.getPower());
+            telemetry.addData("backRightMotor:", robot.backRightMotor.getPower());
+            telemetry.addData("backLeftMotor", robot.backLeftMotor.getPower());
+
+            //telemetry.addData("intakeLifter Position: ", robot.intakeLifter.getCurrentPosition()); //Sends the position of the intakeLifter position (usefule for tuning)
+            //telemetry.addData("intakeSpinner Power: ", robot.intakeSpinner.getPower()); //Sends the power of the intakeSpinner to the phone
+            //telemetry.addData("carouselSpinner Power: ", robot.carouselSpinner.getPower()); //sends the power of the carousel spinner to the phone
             telemetry.update();
 
 
