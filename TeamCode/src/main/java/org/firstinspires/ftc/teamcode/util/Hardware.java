@@ -1,9 +1,15 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.util;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.checkerframework.checker.units.qual.Acceleration;
+import org.firstinspires.ftc.robotcore.external.navigation.Position;
+import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 public class Hardware {
 
@@ -21,8 +27,12 @@ public class Hardware {
     public DcMotor intakeSpinner = null;
     public DcMotor intakeLifter = null;
 
+    //IMU for gyroscope
+    public BNO055IMU imu = null;
+
     HardwareMap hwMap = null;
     public ElapsedTime runtime = new ElapsedTime();
+
 
     //public Hardware (HardwareMap hwMap)
     public Hardware (){
@@ -44,6 +54,18 @@ public class Hardware {
         intakeSpinner = hwMap.get(DcMotor.class, "intakeSpinner");
         intakeLifter = hwMap.get(DcMotor.class, "intakeLifter");
 
+        //connect imu and set its settings
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        parameters.loggingEnabled = true;
+        parameters.loggingTag = "IMU";
+        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+
+        imu = hwMap.get(BNO055IMU.class, "imu");
+        imu.initialize(parameters);
+        imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
 
         //set directions
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);

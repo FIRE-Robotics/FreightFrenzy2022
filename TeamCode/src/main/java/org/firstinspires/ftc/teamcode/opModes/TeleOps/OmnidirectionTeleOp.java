@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.opModes.TeleOps;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
+
+import org.firstinspires.ftc.teamcode.util.Hardware;
 
 @TeleOp(name = "Final TeleOp", group = "TeleOps")
-public class FinalTeleOp extends LinearOpMode {
+public class OmnidirectionTeleOp extends LinearOpMode {
 
     Hardware robot = new Hardware();
 
