@@ -56,16 +56,20 @@ public class Hardware {
 
         //connect imu and set its settings
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
         parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parameters.calibrationDataFile = "BNO055IMUCalibration.json";
         parameters.loggingEnabled = true;
         parameters.loggingTag = "IMU";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+        //TODO: If Sensor mode needs to be declared, and if so what
+        //parameters.mode = BNO055IMU.SensorMode.
+
 
         imu = hwMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
         imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
+
 
         //set directions
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
