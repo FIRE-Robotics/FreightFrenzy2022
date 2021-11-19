@@ -116,17 +116,19 @@ public class ActiveLocation implements Runnable{
     }
 
     public double getAngleInRadians(){
+        updateSensors();
         return angle.getAngleInRadians();
     }
 
     public double getAngleInDegrees(){
+        updateSensors();
         return angle.getAngleInDegrees();
     }
 
     //Resets the orientation of the robot so the current direction is forward
     public void setResetAngle(){
         updateSensors();
-        angle = resetAngle;
+        resetAngle = angle;
     }
 
     public void stop() {
