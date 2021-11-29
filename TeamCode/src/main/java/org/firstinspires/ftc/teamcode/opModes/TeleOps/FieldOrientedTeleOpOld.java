@@ -3,12 +3,14 @@ package org.firstinspires.ftc.teamcode.opModes.TeleOps;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
 import org.firstinspires.ftc.teamcode.util.Hardware;
+import org.firstinspires.ftc.teamcode.util.HardwareOld;
 
 @TeleOp(name = "Final TeleOp", group = "TeleOps")
-public class FieldOrientedTeleOp extends LinearOpMode {
+public class FieldOrientedTeleOpOld extends LinearOpMode {
 
-    Hardware robot = new Hardware();
+    HardwareOld robot = new HardwareOld();
 
     @Override
     public void runOpMode() {
@@ -31,7 +33,7 @@ public class FieldOrientedTeleOp extends LinearOpMode {
 
         robot.initialize(hardwareMap);
 
-        private ActiveLocation activeLocation;
+        ActiveLocation activeLocation;
         activeLocation = new ActiveLocation(robot);
 
         waitForStart();
@@ -117,7 +119,6 @@ public class FieldOrientedTeleOp extends LinearOpMode {
         activeLocation.stop();
     }
 }
-
 
 
 

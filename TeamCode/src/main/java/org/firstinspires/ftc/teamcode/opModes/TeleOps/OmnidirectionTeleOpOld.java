@@ -4,11 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.util.Hardware;
+import org.firstinspires.ftc.teamcode.util.HardwareOld;
 
 @TeleOp(name = "Final TeleOp", group = "TeleOps")
-public class OmnidirectionTeleOp extends LinearOpMode {
+public class OmnidirectionTeleOpOld extends LinearOpMode {
 
-    Hardware robot = new Hardware();
+    HardwareOld robot = new HardwareOld();
 
     @Override
     public void runOpMode() {
@@ -48,10 +49,7 @@ public class OmnidirectionTeleOp extends LinearOpMode {
 
             //if any of the motor values are > 1, than it lowers all proportionally to get good proportions and speed
             if (Math.abs(frontLeftPower) > 1 || Math.abs(backLeftPower) > 1 || Math.abs(frontRightPower) > 1 || Math.abs(backRightPower) > 1) {
-                max = Math.max(Math.abs(frontLeftPower), Math.abs(backLeftPower));
-                max = Math.max(max, Math.abs(frontRightPower));
-                max = Math.max(max, Math.abs(backRightPower));
-
+                max = Math.max(Math.max(frontLeftPower, frontRightPower), Math.max(backLeftPower, backRightPower));
                 frontLeftPower /= max;
                 frontRightPower /= max;
                 backLeftPower /= max;

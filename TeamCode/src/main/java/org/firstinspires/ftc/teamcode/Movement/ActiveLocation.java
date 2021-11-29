@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Angle;
 import org.firstinspires.ftc.teamcode.util.Hardware;
+import org.firstinspires.ftc.teamcode.util.HardwareOld;
 
 public class ActiveLocation implements Runnable{
 
@@ -42,7 +43,7 @@ public class ActiveLocation implements Runnable{
 
 
     //Sets up the hardware and creates the class, Constructor
-    public ActiveLocation (Hardware robot){
+    public ActiveLocation (HardwareOld robot){
         this.imu = robot.imu;
         //TODO: Will be implemented once encoders are attached to bot
         //this.xDirectionEncoder = robot.backRightMotor;
