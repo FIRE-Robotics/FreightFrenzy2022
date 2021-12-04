@@ -43,7 +43,7 @@ public class ActiveLocation implements Runnable{
 
 
     //Sets up the hardware and creates the class, Constructor
-    public ActiveLocation (HardwareOld robot){
+    public ActiveLocation (Hardware robot){
         this.imu = robot.imu;
         //TODO: Will be implemented once encoders are attached to bot
         //this.xDirectionEncoder = robot.backRightMotor;

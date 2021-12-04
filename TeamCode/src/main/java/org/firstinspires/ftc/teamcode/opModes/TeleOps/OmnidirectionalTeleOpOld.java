@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 import org.firstinspires.ftc.teamcode.util.HardwareOld;
 
-@TeleOp(name = "Final TeleOp", group = "TeleOps")
+@TeleOp(name = "Omnidirectional TeleOp Old", group = "TeleOps")
 public class OmnidirectionalTeleOpOld extends LinearOpMode {
 
     HardwareOld robot = new HardwareOld();

@@ -114,7 +114,7 @@ public class HardwareOld {
         backLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         carouselSpinner.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//
+
         intakeSpinner.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeLifter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
