@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 
 @TeleOp(name = "Final Omnidirectional TeleOp", group = "TeleOps")
-public class FinalOmnidirectionalTeleOp extends LinearOpMode {
+public class FinalRobotOrientedTeleOp extends LinearOpMode {
 
     //TODO: initialize robot
     Hardware robot = new Hardware();

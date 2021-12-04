@@ -3,11 +3,12 @@ package org.firstinspires.ftc.teamcode.opModes.TeleOps;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 import org.firstinspires.ftc.teamcode.util.HardwareOld;
 
-@TeleOp(name = "Omnidirectional TeleOp Old", group = "TeleOps")
-public class OmnidirectionalTeleOpOld extends LinearOpMode {
+@TeleOp(name = "Old Field Oriented TeleOp", group = "TeleOps")
+public class OLDFieldOrientedDrive extends LinearOpMode {
 
     HardwareOld robot = new HardwareOld();
 
@@ -15,9 +16,9 @@ public class OmnidirectionalTeleOpOld extends LinearOpMode {
     public void runOpMode() {
 
         //Values that hold the values that the joysticks return.
-        double drive;
-        double strafe;
-        double turn;
+        double drive = 0;
+        double strafe = 0;
+        double turn = 0;
 
         //Variables that will hold the power each respective motor should be at
         double frontLeftPower;
@@ -32,13 +33,18 @@ public class OmnidirectionalTeleOpOld extends LinearOpMode {
 
         robot.initialize(hardwareMap);
 
+        ActiveLocation activeLocation;
+        //activeLocation = new ActiveLocation(robot);
+
         waitForStart();
 
         while (opModeIsActive()) {
-            //Gets values from joystick and put them into variables
-            drive = -gamepad1.left_stick_y;
-            strafe = gamepad1.left_stick_x;
-            turn = gamepad1.right_stick_x;
+            //Gets values from joystick, and does math to change direction for field
+//            drive = -gamepad1.left_stick_y * Math.cos(activeLocation.getAngleInRadians()) +
+//                    gamepad1.left_stick_x * Math.sin(activeLocation.getAngleInRadians());
+//            strafe = gamepad1.left_stick_x * Math.cos(activeLocation.getAngleInRadians()) -
+//                    -gamepad1.left_stick_y * Math.sin(activeLocation.getAngleInRadians());
+//            turn = gamepad1.right_stick_x;
 
             //calculates the drivetrain motor powers based off of the joystick's outputs
             frontLeftPower = drive + strafe + turn;
@@ -49,7 +55,10 @@ public class OmnidirectionalTeleOpOld extends LinearOpMode {
 
             //if any of the motor values are > 1, than it lowers all proportionally to get good proportions and speed
             if (Math.abs(frontLeftPower) > 1 || Math.abs(backLeftPower) > 1 || Math.abs(frontRightPower) > 1 || Math.abs(backRightPower) > 1) {
-                max = Math.max(Math.max(frontLeftPower, frontRightPower), Math.max(backLeftPower, backRightPower));
+                max = Math.max(Math.abs(frontLeftPower), Math.abs(backLeftPower));
+                max = Math.max(max, Math.abs(frontRightPower));
+                max = Math.max(max, Math.abs(backRightPower));
+
                 frontLeftPower /= max;
                 frontRightPower /= max;
                 backLeftPower /= max;
@@ -107,9 +116,9 @@ public class OmnidirectionalTeleOpOld extends LinearOpMode {
             telemetry.addData("Intake Lifter Power", robot.intakeLifter.getPower());
             telemetry.update();
         }
+        //activeLocation.stop();
     }
 }
-
 
 
 
