@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode.Tests;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 
 
@@ -46,7 +47,7 @@ public class activeLocationTest extends LinearOpMode {
 
         robot.initialize(hardwareMap);
 
-        private ActiveLocation activeLocation;
+        ActiveLocation activeLocation;
         activeLocation = new ActiveLocation(robot);
 
         waitForStart();
