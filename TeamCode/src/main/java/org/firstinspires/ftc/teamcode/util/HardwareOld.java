@@ -11,6 +11,7 @@ import org.checkerframework.checker.units.qual.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
+@Deprecated
 public class HardwareOld {
 
     //Possible reference = HardwarePushbot.java

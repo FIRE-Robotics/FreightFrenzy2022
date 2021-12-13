@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 import org.firstinspires.ftc.teamcode.util.HardwareOld;
 
+@Deprecated
 @TeleOp(name = "Old Field Oriented TeleOp", group = "TeleOps")
 public class OLDFieldOrientedDrive extends LinearOpMode {
 

@@ -6,11 +6,17 @@ import static org.firstinspires.ftc.teamcode.util.Constants.PI;
 import static org.firstinspires.ftc.teamcode.util.Constants.TAU;
 
 public class Angle {
+    //IN RADIANS
     private final double angle;
 
 
     //Constructor
-    private Angle(double angle) {
+
+    /**
+     * Constructor for an Angle Object
+     * @param angle The angle value in radians
+     */
+    public Angle(double angle) {
         this.angle = angle;
     }
 
@@ -26,9 +32,15 @@ public class Angle {
 
 
     //makes angle positive if it is negative
+
+    /**
+     * Creates an Angle that is refelcted to the positive side of the angle circle
+     * @returns an angle that is on the positive side of the angle circle with the same absolute value angle
+     */
     public Angle makePositive() {
         return new Angle(angle < 0 ? -angle : angle);
     }
+
 
     public static Angle fromDegrees(double angle, boolean reflectDirection) {
         return fromRadians(Math.toRadians(angle), reflectDirection);
@@ -48,6 +60,10 @@ public class Angle {
         return fromRadians(angle, false);
     }
 
+    /**
+     * The way you want to get the angle. Will return the angle and make sure it is on the 0 to +-PI
+     * @return It returns the trimmed angle value.
+     */
     public double getTrimmedAngleInRadians() {
         //If over 180 degrees
         if (angle > PI) {
@@ -61,6 +77,10 @@ public class Angle {
         } else return angle;
     }
 
+    /**
+     * Returns the angle value in degrees, and trims it to fit the 0 to +-180 angle circle
+     * @return
+     */
     public double getTrimmedAngleInDegrees() {
         return Math.toDegrees(getTrimmedAngleInRadians());
     }

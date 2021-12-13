@@ -54,7 +54,7 @@ public class motorTestAuton extends LinearOpMode {
         robot.backLeftMotor.setPower(0.5);
         robot.backRightMotor.setPower(0.5);
 
-        sleep(10000);
+        sleep(5000);
         }
 
     }

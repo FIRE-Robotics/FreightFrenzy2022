@@ -1,19 +1,81 @@
 package org.firstinspires.ftc.teamcode.util;
 
-public class Vector2D {
-    double distance;
-    double angle;
+import org.firstinspires.ftc.robotcore.external.Const;
 
-    public Vector2D(double Distance, double Angle){
-        distance = Distance;
+public class Vector2D {
+    private double magnitude;
+    private Angle angle;
+    private double XComponent;
+    private double YComponent;
+
+    //TODO: Make a constructor with only start and end point as parameters.
+
+    /**
+     * Creates an object that stores the Magnitude, angle, xComponent, and Ycomponent of a line.
+     * @param Magnitude The length or value of th eline
+     * @param Angle The angle of the line in robotics circle (0 to +- PI to 0)
+     */
+    public Vector2D(double Magnitude, Angle Angle){
+        magnitude = Magnitude;
         angle = Angle;
+
+
+        double currentAngle = angle.getTrimmedAngleInRadians();
+        double adjustedAngle = Math.abs(Math.abs(currentAngle) - Constants.PI_OVER_2);
+        if (Math.abs(currentAngle) == Constants.PI)
+            adjustedAngle = Constants.PI;
+
+        XComponent= magnitude * Math.cos(adjustedAngle);
+        if (currentAngle < 0){
+            XComponent = -XComponent;
+        }
+
+        YComponent= magnitude * Math.sin(adjustedAngle);
+        if (Math.abs(currentAngle) > Constants.PI_OVER_2){
+            YComponent = -YComponent;
+        }
     }
 
-    public double getAngle(){
+    //NOT DONE NEED TO FINISH ANGLE MATH
+//    public Vector2D(int startX, int startY, int endX, int endY){
+//        XComponent = endX - startX;
+//        YComponent = endY - startY;
+//
+//        magnitude = Math.hypot(XComponent, YComponent);
+//
+//        angle = ....
+//    }
+
+    /**
+     *
+     * @returns the angle of the line
+     */
+    public Angle getAngle(){
         return angle;
     }
 
-    public double getDistance(){
-        return distance;
+    /**
+     *
+     * @returns the length of the line
+     */
+    public double getMagnitude(){
+        return magnitude;
     }
+
+    /**
+     *
+     * @returns the X component of the line
+     */
+    public double getXComponent(){
+        return XComponent;
+    }
+
+    /**
+     *
+      * @returns the y component of the line
+     */
+    public double getYComponent(){
+        return YComponent;
+    }
+
 }

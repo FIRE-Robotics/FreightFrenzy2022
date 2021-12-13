@@ -33,11 +33,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
+import org.firstinspires.ftc.teamcode.Movement.BasicAutoDriving;
+import org.firstinspires.ftc.teamcode.Movement.Pathfinder;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 
 
-@Autonomous(name="activeLocationTest", group="Test")
-public class activeLocationTest extends LinearOpMode {
+@Autonomous(name="AngleTuner2", group="Test")
+public class AngleTuner2 extends LinearOpMode {
 
 
     Hardware robot = new Hardware();
@@ -47,16 +50,25 @@ public class activeLocationTest extends LinearOpMode {
 
         robot.initialize(hardwareMap);
 
-        ActiveLocation activeLocation;
-        activeLocation = new ActiveLocation(robot);
+        ActiveLocation activeLocation = new ActiveLocation(robot);
 
-        //activeLocation.run();
+        Pathfinder pathfinder = new Pathfinder(activeLocation);
+
+        BasicAutoDriving basicAutoDriving = new BasicAutoDriving(activeLocation, robot, 0.5, pathfinder);
+
+        int targetAngle = 0;
 
         waitForStart();
 
         while (opModeIsActive()){
-            telemetry.addData("Angle", activeLocation.getTrimmedAngleInDegrees());
+            //Turns to the right 90 degrees
+            basicAutoDriving.turn(Constants.PI_OVER_2);
+            targetAngle = 180;
+            sleep(3000);
+            telemetry.addData("Current Angle: ", activeLocation.getTrimmedAngleInDegrees());
+            telemetry.addData("What Angle Should Be: ", targetAngle);
             telemetry.update();
+            sleep(7500);
         }
         activeLocation.stopActiveLocation();
     }

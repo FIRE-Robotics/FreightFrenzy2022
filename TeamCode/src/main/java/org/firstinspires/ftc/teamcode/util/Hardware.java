@@ -16,7 +16,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 public class Hardware {
 
-    //Declare motors for the robot
+    //Declare motors variables
     public DcMotor frontRightMotor = null;
     public DcMotor frontLeftMotor = null;
     public DcMotor backRightMotor = null;
@@ -27,24 +27,28 @@ public class Hardware {
 
     public DcMotor carouselSpinner = null;
 
-    //Declare Imu
+    //Declare Imu variable
     public BNO055IMU imu = null;
 
+    //Declare Hardware map
+    //A hardware map is the way you connect the rev hubs in built hardware map to a code hardware map.
     HardwareMap hwMap = null;
 
+    //Internal clock, can be used for sleep function or to check how much time has passed.
     public ElapsedTime runtime = new ElapsedTime();
 
-    //Constructor
+    //Empty Constructor
     public Hardware (){
-
+        //All code and settings will be run in the initialize method.
     }
 
 
-    //Initialize method that connects motors from robot to code and sets the settings
+    //Initialize method that connects hardware from robot to code and sets the settings
     public void initialize(HardwareMap ahwMap){
+        //sets the code hardware map to the rev hubs hardware map
         hwMap = ahwMap;
 
-        //connects rev hub motors to code
+        //connects rev hub motors to code hardware map
         frontRightMotor = hwMap.get(DcMotor.class, "frontRightMotor");
         frontLeftMotor = hwMap.get(DcMotor.class, "frontLeftMotor");
         backRightMotor = hwMap.get(DcMotor.class, "backRightMotor");
@@ -58,6 +62,7 @@ public class Hardware {
 
         //Sets IMU settings
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        //return value of radians
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
         parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parameters.calibrationDataFile = "BNO055IMUCalibration.json";
@@ -65,12 +70,15 @@ public class Hardware {
         parameters.loggingTag = "IMU";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
 
+        //gets imu from rev hardware map and connects it to code
         imu = hwMap.get(BNO055IMU.class, "imu");
+        //sets the settings we declared above.
         imu.initialize(parameters);
         imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
 
 
         //Sets the default direction for the motors
+        //TODO: If you are tuning directions here is where it is
         frontRightMotor.setDirection(FORWARD);
         frontLeftMotor.setDirection(REVERSE);
         backRightMotor.setDirection(FORWARD);
@@ -113,10 +121,11 @@ public class Hardware {
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         carouselSpinner.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        //Sets up slides to work with encoders.
         slideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         slideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         slideMotor.setTargetPosition(0);
-        slideMotor.setPower(0.2); //Change later here if you want to change the speed of the slides, low to j test later
+        slideMotor.setPower(0.4); //Change later here if you want to change the speed of the slides, low to j test later
 
 
     }

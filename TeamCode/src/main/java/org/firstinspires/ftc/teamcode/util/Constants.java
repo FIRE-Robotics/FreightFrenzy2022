@@ -1,8 +1,22 @@
 package org.firstinspires.ftc.teamcode.util;
 
 public final class Constants {
+    //TODO: Part 1
+    public static final int bottomLevelShippingHubTicks = 0;
+    public static final int secondLevelShippingHubTicks = 0;
+    public static final int thirdLevelShippingHubTicks = 0;
+    public static final int teamElementHeightTicks = 0;
+
+    //TODO: Part 2
+    public static final int ticksPerRadian = 0;
+
+    //TODO: Part 3
+    public static final double driveTicksPerMM = 0;
+
+
     public static final double PI         = Math.PI;
     public static final double TAU        = 2 * PI;
+    public static final double twoPI        = 2 * PI;
     public static final double PI_OVER_2  = PI / 2;
     public static final double PI_OVER_4  = PI / 4;
 

@@ -116,21 +116,37 @@ public class ActiveLocation implements Runnable{
         return fieldXPosition;
     }
 
+    /**
+     * DO NOT USE THIS, USE getTrimmedAngleInRadians
+     * @return the angle of the bot in radians. Is based on the orientation of when the bot was started.
+     */
     public double getAngleInRadians(){
         updateSensors();
         return angle.getAngleInRadians();
     }
 
+    /**
+     * DO NOT USE THIS, USE getTrimmedAngleInDegrees
+     * @return the angle of the bot in Degrees. Is based on the orientation of when the bot was started.
+     */
     public double getAngleInDegrees(){
         updateSensors();
         return angle.getAngleInDegrees();
     }
 
+    /**
+     *
+     * @return the angle of the bot in Radians. Is based on the orientation of when the bot was started and returns an angle in a trimmed circle.
+     */
     public double getTrimmedAngleInRadians(){
         updateSensors();
         return angle.getTrimmedAngleInRadians();
     }
 
+    /**
+     *
+     * @return the angle of the bot in Degrees. Is based on the orientation of when the bot was started and returns an angle in a trimmed circle.
+     */
     public double getTrimmedAngleInDegrees(){
         updateSensors();
         return angle.getTrimmedAngleInDegrees();
@@ -142,7 +158,10 @@ public class ActiveLocation implements Runnable{
         resetAngle = angle;
     }
 
-    public void stop() {
+    /**
+     *Stops Active Location from running.
+     * */
+    public void stopActiveLocation() {
         isRunning = false;
     }
 

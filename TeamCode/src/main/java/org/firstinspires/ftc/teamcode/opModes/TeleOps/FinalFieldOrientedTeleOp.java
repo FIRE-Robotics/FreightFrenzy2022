@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.opModes.TeleOps;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 
 @TeleOp(name = "Final Field Oriented TeleOp", group = "TeleOps")
@@ -24,9 +26,10 @@ public class FinalFieldOrientedTeleOp extends LinearOpMode {
         double backRightPower;
 
         int restintakeSlidePosition = 0;
-        int firstLevelSlidePosition = 0;
-        int secondLevelSlidePosition = 0;
-        int thirdLevelSlidePosition = 0;
+        int firstLevelSlidePosition = Constants.bottomLevelShippingHubTicks;
+        int secondLevelSlidePosition = Constants.secondLevelShippingHubTicks;
+        int thirdLevelSlidePosition = Constants.thirdLevelShippingHubTicks;
+        int shippingElementHeight = Constants.teamElementHeightTicks;
 
         double maxMotorSpeed = 0.8;
         double maxOuttakeSpeed = 0.4;
@@ -112,7 +115,7 @@ public class FinalFieldOrientedTeleOp extends LinearOpMode {
 
             telemetry.update();
         }
-        activeLocation.stop();
+        activeLocation.stopActiveLocation();
     }
 }
 

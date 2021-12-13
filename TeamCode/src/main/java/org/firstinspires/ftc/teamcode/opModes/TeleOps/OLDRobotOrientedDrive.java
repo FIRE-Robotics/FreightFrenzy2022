@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 import org.firstinspires.ftc.teamcode.util.HardwareOld;
 
+@Deprecated
 @TeleOp(name = "Omnidirectional TeleOp Old", group = "TeleOps")
 public class OLDRobotOrientedDrive extends LinearOpMode {
 

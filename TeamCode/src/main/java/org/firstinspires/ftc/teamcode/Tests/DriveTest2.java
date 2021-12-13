@@ -33,11 +33,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
+import org.firstinspires.ftc.teamcode.Movement.BasicAutoDriving;
+import org.firstinspires.ftc.teamcode.Movement.Pathfinder;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 
 
-@Autonomous(name="activeLocationTest", group="Test")
-public class activeLocationTest extends LinearOpMode {
+@Autonomous(name="Drive Test 2", group="Test")
+public class DriveTest2 extends LinearOpMode {
 
 
     Hardware robot = new Hardware();
@@ -47,16 +50,21 @@ public class activeLocationTest extends LinearOpMode {
 
         robot.initialize(hardwareMap);
 
-        ActiveLocation activeLocation;
-        activeLocation = new ActiveLocation(robot);
+        ActiveLocation activeLocation = new ActiveLocation(robot);
 
-        //activeLocation.run();
+        Pathfinder pathfinder = new Pathfinder(activeLocation);
+
+        BasicAutoDriving basicAutoDriving = new BasicAutoDriving(activeLocation, robot, 0.5, pathfinder);
+
 
         waitForStart();
 
         while (opModeIsActive()){
-            telemetry.addData("Angle", activeLocation.getTrimmedAngleInDegrees());
-            telemetry.update();
+            basicAutoDriving.changeCurrentPosition(610, 0, 0, 0.5);
+            sleep(3000);
+            telemetry.addData("Motor Ticks: ", robot.frontLeftMotor.getCurrentPosition());
+            sleep(4500);
+
         }
         activeLocation.stopActiveLocation();
     }

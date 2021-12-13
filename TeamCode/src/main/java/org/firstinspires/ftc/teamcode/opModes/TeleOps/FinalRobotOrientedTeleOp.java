@@ -5,13 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 
 @TeleOp(name = "Final Omnidirectional TeleOp", group = "TeleOps")
 public class FinalRobotOrientedTeleOp extends LinearOpMode {
 
-    //TODO: initialize robot
     Hardware robot = new Hardware();
+
 
     @Override
     public void runOpMode() {
@@ -26,9 +27,10 @@ public class FinalRobotOrientedTeleOp extends LinearOpMode {
         double backRightPower;
 
         int restintakeSlidePosition = 0;
-        int firstLevelSlidePosition = 0;
-        int secondLevelSlidePosition = 0;
-        int thirdLevelSlidePosition = 0;
+        int firstLevelSlidePosition = Constants.bottomLevelShippingHubTicks;
+        int secondLevelSlidePosition = Constants.secondLevelShippingHubTicks;
+        int thirdLevelSlidePosition = Constants.thirdLevelShippingHubTicks;
+        int shippingElementHeight = Constants.teamElementHeightTicks;
 
         double maxMotorSpeed = 0.8;
         double maxOuttakeSpeed = 0.4;
@@ -54,19 +56,20 @@ public class FinalRobotOrientedTeleOp extends LinearOpMode {
             if (Math.abs(frontLeftPower) > 1 || Math.abs(frontRightPower) > 1 || Math.abs(backLeftPower) > 1 || Math.abs(backRightPower) > 1){
                 max = Math.max(frontLeftPower, Math.max(frontRightPower, Math.max(backLeftPower, backRightPower)));
 
+                //fix problem
                 frontLeftPower /= max;
                 frontRightPower /= max;
                 backLeftPower /= max;
                 backRightPower /= max;
             }
 
-            //TODO: Set Motor Power
+
             robot.frontLeftMotor.setPower(frontLeftPower * maxMotorSpeed);
             robot.frontRightMotor.setPower(frontRightPower * maxMotorSpeed);
             robot.backRightMotor.setPower(backRightPower * maxMotorSpeed);
             robot.backLeftMotor.setPower(backLeftPower * maxMotorSpeed);
 
-            //TODO: Controls
+
             if (gamepad2.left_trigger >= 0.1){
                 robot.intakeMotor.setPower(gamepad2.left_trigger * maxMotorSpeed);
             }
