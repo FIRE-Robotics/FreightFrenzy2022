@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Movement.ActiveLocation;
 import org.firstinspires.ftc.teamcode.Movement.BasicAutoDriving;
 import org.firstinspires.ftc.teamcode.Movement.Pathfinder;
+import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Hardware;
 
 
@@ -27,12 +28,26 @@ public class BlueCarouselSideAuton extends LinearOpMode {
         BasicAutoDriving basicAutoDriving = new BasicAutoDriving(activeLocation, robot, 0.5, pathfinder);
 
 
+
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
 
         if (opModeIsActive()){
             //TODO: AUTON PATH GOES HERE
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
     }
