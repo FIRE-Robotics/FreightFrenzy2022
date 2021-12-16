@@ -7,6 +7,7 @@ import static java.lang.Thread.sleep;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.util.Angle;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.Hardware;
@@ -20,6 +21,8 @@ public class BasicAutoDriving {
     private DcMotor backRightMotor;
 
     public double ticksPerMilimeterDrive = Constants.driveTicksPerMM;
+    //should be the same as drive according to physics. might need to tune cuz physics doesnt work in robotics
+    public double getTicksPerMilimeterStrafe = Constants.driveTicksPerMM;
     public double ticksPerMilimeterStrafe = 0;
     public int ticksPerRadian = Constants.ticksPerRadian;
     public double ticksPerDiagonalTile;
@@ -205,6 +208,18 @@ public class BasicAutoDriving {
     public void turnTo(double targetAngle, int breakTime){
         turn(Pathfinder.findAngleFromCurrentAngleInRadians(targetAngle));
     }
+
+    /**
+     * Strafes the robot a given amount of milimeters to the left or right, - = left, positive = right
+     * @param sideDistance
+     */
+    public void strafe(double sideDistance){
+        frontLeftMotor.setTargetPosition(frontLeftMotor.getCurrentPosition() + (int) Math.round(sideDistance * ticksPerMilimeterStrafe));
+        backLeftMotor.setTargetPosition(frontRightMotor.getCurrentPosition() - (int) Math.round(sideDistance * ticksPerMilimeterStrafe));
+        frontRightMotor.setTargetPosition(backLeftMotor.getCurrentPosition() - (int) Math.round(sideDistance * ticksPerMilimeterStrafe));
+        backRightMotor.setTargetPosition(backRightMotor.getCurrentPosition() + (int) Math.round(sideDistance * ticksPerMilimeterStrafe));
+    }
+
 
     /**
      * Sets the motors to change there target encoder position by a given amount

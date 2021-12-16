@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.util;
 
+import com.sun.tools.javac.code.Attribute;
+
 import org.firstinspires.ftc.robotcore.external.Const;
 
 public class Vector2D {
@@ -37,14 +39,23 @@ public class Vector2D {
     }
 
     //NOT DONE NEED TO FINISH ANGLE MATH
-//    public Vector2D(int startX, int startY, int endX, int endY){
-//        XComponent = endX - startX;
-//        YComponent = endY - startY;
-//
-//        magnitude = Math.hypot(XComponent, YComponent);
-//
-//        angle = ....
-//    }
+    public Vector2D(int startX, int startY, int endX, int endY){
+        XComponent = endX - startX;
+        YComponent = endY - startY;
+
+        magnitude = Math.hypot(XComponent, YComponent);
+
+        double rawAngle = Math.atan(YComponent/XComponent);
+
+        if (YComponent < 0)
+            rawAngle += Constants.PI_OVER_2;
+        if (XComponent < 0)
+            rawAngle = -rawAngle;
+
+        angle = new Angle(rawAngle);
+
+
+    }
 
     /**
      *
